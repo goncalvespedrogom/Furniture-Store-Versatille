@@ -1,108 +1,139 @@
 .banner {
-    width: 100%;
-    height: 850px;
-    background-image: url('../img/background.svg'); 
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-  
-  .menu {
-    background: transparent;
-    width: 100%;
-    max-width: 1150px;
-    display: flex;
-    justify-content: space-between;
-    margin: auto;
-    align-items: center;
-    padding: 2rem 1rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-  }
-  
-  .logo img {
-    width: 150px;
-    height: 50px;
-  }
-  
-  .menuOptions {
-    list-style: none;
-    display: flex;
-    gap: 40px;
-  }
-  
-  .menuOptions li a {
-    text-decoration: none;
-    color: #f7f7f7; 
-    font-size: 1.1rem;
-    font-weight: 400;
-    transition: color 0.2s ease;
-  }
-  
-  .menuOptions li a:hover {
-    color: #f7f7f7be;
-  }
-  
-  .icons {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .icons a {
-    color: #483225;
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-  
-  .icons a:hover {
-    opacity: 0.8;
-  }
-  
-  .icon {
-    display: flex;
-    font-size: 1.5rem;
-  }
-  
-  .content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1150px;
-    margin: auto;
-    padding: 0 1rem;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .text {
-    max-width: 500px;
-    color: #f7f7f7; 
-  }
-  
-  .text h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-  
-  .text p {
-    font-size: 1.2rem;
-    font-weight: 400;
-  }
-  
-  .image {
-    max-width: 500px;
-  }
-  
-  .image img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px; 
-  }
+  width: 100%;
+  height: 850px;
+  background-image: url('../img/background.svg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.menu {
+  background: transparent;
+  width: 100%;
+  max-width: 1150px;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  align-items: center;
+  padding: 2rem 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.logo img {
+  width: 150px;
+  height: 50px;
+}
+
+.menuOptions {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+.menuOptions li a {
+  text-decoration: none;
+  color: #3b3b3b;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.menuOptions li a:hover {
+  opacity: 0.8;
+}
+
+.icons {
+  display: flex;
+  gap: 15px;
+}
+
+.icons a {
+  color: #3b3b3b;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.icons a:hover {
+  opacity: 0.8;
+}
+
+.icon {
+  display: flex;
+  font-size: 1.5rem;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%; /* alterar dps */
+  max-width: 1050px;
+  margin: auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.text {
+  color: #3b3b3b;
+  position: relative; /* Contexto de posicionamento para o título */
+  z-index: 2; /* Garante que o texto fique sobre a imagem */
+}
+
+.text h1 {
+  font-size: 6.65rem; /* Tamanho aumentado do título */
+  font-weight: 700;
+  white-space: nowrap; /* Impede a quebra de linha */
+  position: absolute; /* Posiciona o título absolutamente */
+  top: -2rem; /* Ajuste para mover o título para cima */
+  left: 0; /* Alinha o título à esquerda do contêiner */
+  z-index: 3; /* Garante que o título fique sobre a imagem */
+  /* Remova a linha abaixo, pois a fonte será aplicada via classe */
+  /* font-family: var(--font-montserrat), sans-serif; */
+}
+
+.text p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-top: 7rem; /* Ajuste para evitar sobreposição com o título */
+  margin-bottom: 1.3rem;
+  max-width: 360px;
+  margin-right: 40px;
+}
+
+.button {
+  background-color: transparent; 
+  border: 2px solid #3b3b3b;
+  color: #3b3b3b; 
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem; /* Espaçamento acima do botão */
+}
+
+.button:hover {
+  background-color: #3b3b3b; /* Cor de fundo ao passar o mouse */
+  color: #f7f7f7;
+}
+
+.image {
+  position: relative;
+  z-index: 1; /* Garante que a imagem fique atrás do título */
+}
+
+.image img {
+  width: 600px;
+  height: auto;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+}
+

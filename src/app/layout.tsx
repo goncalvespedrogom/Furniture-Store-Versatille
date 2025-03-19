@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
-import { Barlow } from "next/font/google"; 
+import { Poppins, Montserrat } from "next/font/google"; // Importando Poppins e Montserrat
 import "./globals.css";
 
-const barlow = Barlow({
-  weight: ["400", "500", "600", "700"], 
-  subsets: ["latin"], 
-  variable: "--font-poppins", 
+// Configuração da fonte Poppins (padrão)
+const poppins = Poppins({
+  weight: ["400", "500", "600", "700"], // Pesos da fonte
+  subsets: ["latin"], // Subconjuntos de caracteres
+  variable: "--font-poppins", // Variável CSS para a fonte
+});
+
+// Configuração da fonte Montserrat (apenas para o h1)
+const montserrat = Montserrat({
+  weight: ["400", "500", "600", "700"], // Pesos da fonte
+  subsets: ["latin"], // Subconjuntos de caracteres
+  variable: "--font-montserrat", // Variável CSS para a fonte
 });
 
 export const metadata: Metadata = {
@@ -20,8 +28,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      {/* aplicando a fonte Poppins ao body */}
-      <body className={barlow.className}>
+      {/* Aplicando Poppins como fonte padrão no body */}
+      <body className={poppins.className}>
         {children}
       </body>
     </html>

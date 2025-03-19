@@ -5,6 +5,14 @@ import styles from "../styles/Banner.module.css";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import Logo from "@/img/logo.svg";
 import ImgTopo from "@/img/img-topo-do-site.svg";
+import { Montserrat } from "next/font/google"; // Importando Montserrat
+
+// Configuração da fonte Montserrat
+const montserrat = Montserrat({
+  weight: ["400", "500", "600", "700"], // Pesos da fonte
+  subsets: ["latin"], // Subconjuntos de caracteres
+  variable: "--font-montserrat", // Variável CSS para a fonte
+});
 
 const Banner: React.FC = () => {
   return (
@@ -21,16 +29,19 @@ const Banner: React.FC = () => {
         {/* opções do menu no meio */}
         <ul className={styles.menuOptions}>
           <li>
-            <a href="#">Área Externa</a>
+            <a href="#">Sobre</a>
           </li>
           <li>
-            <a href="#">Acessórios</a>
+            <a href="#">Produtos</a>
           </li>
           <li>
-            <a href="#">Móveis</a>
+            <a href="#">Projetos</a>
           </li>
           <li>
-            <a href="#">Iluminação</a>
+            <a href="#">Loja</a>
+          </li>
+          <li>
+            <a href="#">Contato</a>
           </li>
         </ul>
 
@@ -48,8 +59,11 @@ const Banner: React.FC = () => {
       {/* conteúdo centralizado: texto à esquerda e imagem à direita */}
       <div className={styles.content}>
         <div className={styles.text}>
-          <h1>Bem-vindo à Versatille</h1>
-          <p>Encontre os melhores móveis e acessórios para sua casa.</p>
+          {/* Aplicando a classe da fonte Montserrat ao h1 */}
+          <h1 className={montserrat.className}>Versatille</h1>
+          <p>Transforme o seu espaço com elegância e sofisticação. Descubra móveis exclusivos, design impecável e qualidade premium para um ambiente verdadeiramente luxuoso.</p>
+          {/* Botão adicionado aqui */}
+          <button className={styles.button}>Mais detalhes</button>
         </div>
         <div className={styles.image}>
           <Image src={ImgTopo} alt="Móveis modernos" width={500} height={400} />
