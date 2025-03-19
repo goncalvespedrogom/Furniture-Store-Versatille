@@ -5,13 +5,12 @@ import styles from "../styles/Banner.module.css";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import Logo from "@/img/logo.svg";
 import ImgTopo from "@/img/img-topo-do-site.svg";
-import { Montserrat } from "next/font/google"; // Importando Montserrat
+import { Montserrat } from "next/font/google"; 
 
-// Configuração da fonte Montserrat
 const montserrat = Montserrat({
-  weight: ["400", "500", "600", "700"], // Pesos da fonte
-  subsets: ["latin"], // Subconjuntos de caracteres
-  variable: "--font-montserrat", // Variável CSS para a fonte
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-montserrat", 
 });
 
 const Banner: React.FC = () => {
@@ -59,10 +58,10 @@ const Banner: React.FC = () => {
       {/* conteúdo centralizado: texto à esquerda e imagem à direita */}
       <div className={styles.content}>
         <div className={styles.text}>
-          {/* Aplicando a classe da fonte Montserrat ao h1 */}
+          {/* aplicando a classe da fonte montserrat no h1 */}
           <h1 className={montserrat.className}>Versatille</h1>
           <p>Transforme o seu espaço com elegância e sofisticação. Descubra móveis exclusivos, design impecável e qualidade premium para um ambiente verdadeiramente luxuoso.</p>
-          {/* Botão adicionado aqui */}
+          {/* botão adicionado aqui */}
           <button className={styles.button}>Mais detalhes</button>
         </div>
         <div className={styles.image}>

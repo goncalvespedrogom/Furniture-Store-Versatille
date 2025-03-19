@@ -1,19 +1,11 @@
 import type { Metadata } from "next";
-import { Poppins, Montserrat } from "next/font/google"; // Importando Poppins e Montserrat
+import { Poppins } from "next/font/google"; 
 import "./globals.css";
 
-// Configuração da fonte Poppins (padrão)
 const poppins = Poppins({
-  weight: ["400", "500", "600", "700"], // Pesos da fonte
-  subsets: ["latin"], // Subconjuntos de caracteres
-  variable: "--font-poppins", // Variável CSS para a fonte
-});
-
-// Configuração da fonte Montserrat (apenas para o h1)
-const montserrat = Montserrat({
-  weight: ["400", "500", "600", "700"], // Pesos da fonte
-  subsets: ["latin"], // Subconjuntos de caracteres
-  variable: "--font-montserrat", // Variável CSS para a fonte
+  weight: ["400", "500", "600", "700"], 
+  subsets: ["latin"], 
+  variable: "--font-poppins", 
 });
 
 export const metadata: Metadata = {
@@ -28,7 +20,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      {/* Aplicando Poppins como fonte padrão no body */}
       <body className={poppins.className}>
         {children}
       </body>
