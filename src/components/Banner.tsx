@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "../styles/Banner.module.css";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import Logo from "@/img/logo.svg";
-import ImgTopo from '@/img/img-topo-do-site.svg'
+import ImgTopo from "@/img/img-topo-do-site.svg";
 
 const Banner: React.FC = () => {
   return (
@@ -12,9 +13,9 @@ const Banner: React.FC = () => {
       <nav className={styles.menu}>
         {/* logo à esquerda */}
         <div className={styles.logo}>
-          <a href="/">
+          <Link href="/">
             <Image src={Logo} alt="Logo da Versatille" />
-          </a>
+          </Link>
         </div>
 
         {/* opções do menu no meio */}
@@ -51,12 +52,7 @@ const Banner: React.FC = () => {
           <p>Encontre os melhores móveis e acessórios para sua casa.</p>
         </div>
         <div className={styles.image}>
-          <Image
-            src={ImgTopo} 
-            alt="Móveis modernos"
-            width={500}
-            height={400}
-          />
+          <Image src={ImgTopo} alt="Móveis modernos" width={500} height={400} />
         </div>
       </div>
     </div>

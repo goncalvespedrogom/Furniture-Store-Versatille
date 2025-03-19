@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Barlow } from "next/font/google"; // Importando a fonte Poppins
+import { Barlow } from "next/font/google"; 
 import "./globals.css";
 
-// Configuração da fonte Poppins
 const barlow = Barlow({
-  weight: ["400", "500", "600", "700"], // Defina os pesos que você deseja usar
-  subsets: ["latin"], // Subconjuntos de caracteres
-  variable: "--font-poppins", // Variável CSS para usar a fonte
+  weight: ["400", "500", "600", "700"], 
+  subsets: ["latin"], 
+  variable: "--font-poppins", 
 });
 
 export const metadata: Metadata = {
@@ -21,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      {/* Aplicando a fonte Poppins ao body */}
+      {/* aplicando a fonte Poppins ao body */}
       <body className={barlow.className}>
         {children}
       </body>
