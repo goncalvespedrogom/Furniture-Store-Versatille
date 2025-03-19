@@ -1,0 +1,111 @@
+/* src/styles/Banner.module.css */
+.banner {
+    width: 100%;
+    height: 850px; /* Ajuste a altura conforme necessário */
+    background-image: url('../img/background.svg'); /* Imagem de fundo do banner */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .menu {
+    background: transparent; /* Fundo semi-transparente para o menu */
+    width: 100%;
+    max-width: 1150px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
+    padding: 2rem 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+  
+  .logo img {
+    width: 150px;
+    height: 50px;
+  }
+  
+  .menuOptions {
+    list-style: none;
+    display: flex;
+    gap: 40px; /* Espaçamento entre as opções do menu */
+  }
+  
+  .menuOptions li a {
+    text-decoration: none;
+    color: #f7f7f7; /* Cor do texto */
+    font-size: 1.1rem;
+    font-weight: 400;
+    transition: color 0.2s ease;
+  }
+  
+  .menuOptions li a:hover {
+    color: #f7f7f7be;
+  }
+  
+  .icons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .icons a {
+    color: #483225;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .icons a:hover {
+    opacity: 0.8;
+  }
+  
+  .icon {
+    display: flex;
+    font-size: 1.5rem;
+  }
+  
+  /* Estilos para o conteúdo centralizado */
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1150px;
+    margin: auto;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .text {
+    max-width: 500px;
+    color: #f7f7f7; /* Cor do texto */
+  }
+  
+  .text h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .text p {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+  
+  .image {
+    max-width: 500px;
+  }
+  
+  .image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Bordas arredondadas para a imagem */
+  }
+  

@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Barlow } from "next/font/google"; // Importando a fonte Poppins
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+// Configuração da fonte Poppins
+const barlow = Barlow({
+  weight: ["400", "500", "600", "700"], // Defina os pesos que você deseja usar
+  subsets: ["latin"], // Subconjuntos de caracteres
+  variable: "--font-poppins", // Variável CSS para usar a fonte
 });
 
 export const metadata: Metadata = {
@@ -23,8 +20,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="pt-BR">
+      {/* Aplicando a fonte Poppins ao body */}
+      <body className={barlow.className}>
         {children}
       </body>
     </html>
