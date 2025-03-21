@@ -7,7 +7,7 @@ import banner2 from '@/img/banner2.svg';
 import banner3 from '@/img/banner3.svg';
 
 const Banner: React.FC = () => {
-    // astado para controlar o banner atual
+    // estado para controlar o banner atual
     const [currentBanner, setCurrentBanner] = useState(1);
 
     // array de banners com textos personalizados
@@ -18,14 +18,14 @@ const Banner: React.FC = () => {
             topTitle: "Seja bem-vindo",
             topText: "Encontre os móveis perfeitos para transformar seu espaço.",
             rightText: "Móveis que combinam estilo, conforto e qualidade para deixar sua casa ainda mais aconchegante. Explore nossas opções e descubra o que há de melhor para seu lar.",
-            buttonText: "Mais detalhes",
+            buttonText: "Conferir",
         },
         {
             id: 2,
             image: banner2,
-            topTitle: "Banner 2 Título",
-            topText: "Texto do Banner 2",
-            rightText: "Outro texto para o Banner 2.",
+            topTitle: "Conteúdos",
+            topText: "Boas-vindas . . . . . . . . . . . . . . . . . . . . . . . . . pág. 02\nConteúdos . . . . . . . . . . . . . . . . . . . . . . . . . . . pág. 03\nBehind the Brand . . . . . . . . . . . . . . . . . . . . . pág. 02\nVision & Mission . . . . . . . . . . . . . . . . . . . . . . pág. 02\nTimeline . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . pág. 02\nMeet Our Teams . . . . . . . . . . . . . . . . . . . . . . pág. 02\nSection Breaks . . . . . . . . . . . . . . . . . . . . . . . . pág. 02\nPortfolio & Mockup . . . . . . . . . . . . . . . . . . . pág. 02\nTestimonial . . . . . . . . . . . . . . . . . . . . . . . . . . . pág. 02\nChart Infographic . . . . . . . . . . . . . . . . . . . . pág. 02\nContact Information . . . . . . . . . . . . . . . . . . pág. 02",
+            rightText: "", // texto vazio, pois o conteúdo será exibido no topContent
             buttonText: "Saiba mais",
         },
         {
@@ -58,21 +58,45 @@ const Banner: React.FC = () => {
             {/* banner atual */}
             <div
                 className={styles.banners}
-                style={{ backgroundImage: `url(${banners[currentBanner - 1].image.src})` }}
+                style={{
+                    width: '50%', // largura fixa para todos os banners
+                    backgroundImage: currentBanner === 2 ? 'none' : `url(${banners[currentBanner - 1].image.src})`,
+                    backgroundPosition: 'center',
+                    padding: currentBanner === 2 ? '0' : '2rem', // remover padding apenas no banner2
+                }}
             >
-                {/* conteúdo no topo (título e texto) */}
-                <div className={styles.topContent}>
-                    <h1>{banners[currentBanner - 1].topTitle}</h1>
-                    <p>{banners[currentBanner - 1].topText}</p>
-                </div>
-
-                {/* conteúdo à direita (parte inferior direita) */}
-                <div className={styles.rightContent}>
-                    <p>{banners[currentBanner - 1].rightText}</p>
-                    <button className={styles.button}>
-                        {banners[currentBanner - 1].buttonText}
-                    </button>
-                </div>
+                {/* conteúdo do banner2 (imagem + texto) */}
+                {currentBanner === 2 ? (
+                    <div className={styles.banner2Container}>
+                        {/* imagem do banner2 */}
+                        <div
+                            className={styles.banner2Image}
+                            style={{ backgroundImage: `url(${banners[currentBanner - 1].image.src})` }}
+                        ></div>
+                        {/* texto do banner2 */}
+                        <div className={styles.banner2Text}>
+                            <h1>{banners[currentBanner - 1].topTitle}</h1>
+                            {banners[currentBanner - 1].topText.split('\n').map((line, index) => (
+                                <p key={index}>{line}</p>
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                    <>
+                        {/* conteúdo no topo (título e texto) */}
+                        <div className={styles.topContent}>
+                            <h1>{banners[currentBanner - 1].topTitle}</h1>
+                            <p>{banners[currentBanner - 1].topText}</p>
+                        </div>
+                        {/* conteúdo à direita (parte inferior direita) */}
+                        <div className={styles.rightContent}>
+                            <p>{banners[currentBanner - 1].rightText}</p>
+                            <button className={styles.button}>
+                                {banners[currentBanner - 1].buttonText}
+                            </button>
+                        </div>
+                    </>
+                )}
             </div>
 
             {/* seta direita */}
