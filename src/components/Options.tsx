@@ -2,15 +2,13 @@
 
 import React, { useState } from 'react';
 import styles from '../styles/Options.module.css';
-import banner1 from '@/img/banner1.svg'; 
-import banner2 from '@/img/banner2.svg'; 
+import banner1 from '@/img/banner1.svg';
+import banner2 from '@/img/banner2.svg';
 import banner3 from '@/img/banner3.svg';
 
 const Banner: React.FC = () => {
-    // estado para controlar o banner atual
     const [currentBanner, setCurrentBanner] = useState(1);
 
-    // array de banners com textos personalizados
     const banners = [
         {
             id: 1,
@@ -24,56 +22,50 @@ const Banner: React.FC = () => {
             id: 2,
             image: banner2,
             topTitle: "Conteúdos",
-            topText: "Boas-vindas . . . . . . . . . . . . . . . . . . . . . . . . . pág. 02\nConteúdos . . . . . . . . . . . . . . . . . . . . . . . . . . . pág. 03\nBehind the Brand . . . . . . . . . . . . . . . . . . . . . pág. 02\nVision & Mission . . . . . . . . . . . . . . . . . . . . . . pág. 02\nTimeline . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . pág. 02\nMeet Our Teams . . . . . . . . . . . . . . . . . . . . . . pág. 02\nSection Breaks . . . . . . . . . . . . . . . . . . . . . . . . pág. 02\nPortfolio & Mockup . . . . . . . . . . . . . . . . . . . pág. 02\nTestimonial . . . . . . . . . . . . . . . . . . . . . . . . . . . pág. 02\nChart Infographic . . . . . . . . . . . . . . . . . . . . pág. 02\nContact Information . . . . . . . . . . . . . . . . . . pág. 02",
-            rightText: "", // texto vazio, pois o conteúdo será exibido no topContent
+            topText: "Pensada para facilitar sua busca pelos móveis perfeitos, nossa coleção foi cuidadosamente selecionada para oferecer sofisticação, conforto e funcionalidade. Além disso, organizamos o site para que sua experiência de compra seja a melhor possível. As seções são bem definidas, permitindo que você encontre rapidamente o que procura, seja para a sala, quarto, escritório ou área externa. Tudo isso para tornar sua navegação mais prática, intuitiva e prazerosa. Encontre o móvel ideal e transforme seu ambiente com estilo e elegância!",
+            rightText: "",
             buttonText: "Saiba mais",
         },
         {
             id: 3,
             image: banner3,
-            topTitle: "Banner 3 Título",
-            topText: "Texto do Banner 3",
-            rightText: "Mais um texto para o Banner 3.",
-            buttonText: "Explorar",
+            topTitle: "Showroom",
+            topText: "Encontre uma seleção completa de móveis que unem estilo, conforto e qualidade. Explore nossa variedade de sofás, mesas, cadeiras, estantes e muito mais, tudo pensado para transformar seu ambiente com elegância e funcionalidade.",
+            rightText: "",
+            buttonText: "Mais detalhes",
         },
     ];
 
-    // função para avançar para o próximo banner
     const nextBanner = () => {
         setCurrentBanner((prev) => (prev === banners.length ? 1 : prev + 1));
     };
 
-    // função para voltar ao banner anterior
     const prevBanner = () => {
         setCurrentBanner((prev) => (prev === 1 ? banners.length : prev - 1));
     };
 
     return (
         <div className={styles.options}>
-            {/* seta esquerda */}
             <div className={styles.arrowLeft} onClick={prevBanner}>
-                &#10094; {/* símbolo de seta esquerda */}
+                &#10094;
             </div>
 
-            {/* banner atual */}
             <div
                 className={styles.banners}
                 style={{
-                    width: '50%', // largura fixa para todos os banners
-                    backgroundImage: currentBanner === 2 ? 'none' : `url(${banners[currentBanner - 1].image.src})`,
+                    width: '50%',
+                    backgroundImage: currentBanner === 1 ? `url(${banners[currentBanner - 1].image.src})` : 'none',
                     backgroundPosition: 'center',
-                    padding: currentBanner === 2 ? '0' : '2rem', // remover padding apenas no banner2
+                    padding: [2, 3].includes(currentBanner) ? '0' : '2rem',
+                    backgroundColor: 'transparent'
                 }}
             >
-                {/* conteúdo do banner2 (imagem + texto) */}
                 {currentBanner === 2 ? (
                     <div className={styles.banner2Container}>
-                        {/* imagem do banner2 */}
                         <div
                             className={styles.banner2Image}
                             style={{ backgroundImage: `url(${banners[currentBanner - 1].image.src})` }}
                         ></div>
-                        {/* texto do banner2 */}
                         <div className={styles.banner2Text}>
                             <h1>{banners[currentBanner - 1].topTitle}</h1>
                             {banners[currentBanner - 1].topText.split('\n').map((line, index) => (
@@ -81,14 +73,30 @@ const Banner: React.FC = () => {
                             ))}
                         </div>
                     </div>
+                ) : currentBanner === 3 ? (
+                    <div className={styles.banner3Container}>
+                        <div className={styles.banner3Text}>
+                            <h1>{banners[currentBanner - 1].topTitle}</h1>
+                            <p>{banners[currentBanner - 1].topText}</p>
+                            <p>{banners[currentBanner - 1].rightText}</p>
+                            <button className={styles.button}>
+                                {banners[currentBanner - 1].buttonText}
+                            </button>
+                        </div>
+                        <div
+                            className={styles.banner3Image}
+                            style={{ 
+                                backgroundImage: `url(${banners[currentBanner - 1].image.src})`,
+                                margin: '0'
+                            }}
+                        ></div>
+                    </div>
                 ) : (
                     <>
-                        {/* conteúdo no topo (título e texto) */}
                         <div className={styles.topContent}>
                             <h1>{banners[currentBanner - 1].topTitle}</h1>
                             <p>{banners[currentBanner - 1].topText}</p>
                         </div>
-                        {/* conteúdo à direita (parte inferior direita) */}
                         <div className={styles.rightContent}>
                             <p>{banners[currentBanner - 1].rightText}</p>
                             <button className={styles.button}>
@@ -99,9 +107,8 @@ const Banner: React.FC = () => {
                 )}
             </div>
 
-            {/* seta direita */}
             <div className={styles.arrowRight} onClick={nextBanner}>
-                &#10095; {/* símbolo de seta direita */}
+                &#10095;
             </div>
         </div>
     );
