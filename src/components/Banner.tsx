@@ -2,7 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Banner.module.css";
-import { FaHeart, FaShoppingCart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import { BsFillTelephoneFill } from "react-icons/bs";
 import Logo from "@/img/logo.svg";
 import ImgTopo from "@/img/img-topo-do-site.svg";
 import { Montserrat } from "next/font/google"; 
@@ -28,19 +29,16 @@ const Banner: React.FC = () => {
         {/* opções do menu no meio */}
         <ul className={styles.menuOptions}>
           <li>
-            <a href="#">Sobre</a>
+            <a href="#">Guia</a>
           </li>
           <li>
-            <a href="#">Produtos</a>
+            <a href="#">Galeria</a>
           </li>
           <li>
             <a href="#">Projetos</a>
           </li>
           <li>
             <a href="#">Loja</a>
-          </li>
-          <li>
-            <a href="#">Contato</a>
           </li>
         </ul>
 
@@ -49,8 +47,8 @@ const Banner: React.FC = () => {
           <a href="#" aria-label="Favoritos">
             <FaHeart className={styles.icon} />
           </a>
-          <a href="#" aria-label="Carrinho de Compras">
-            <FaShoppingCart className={styles.icon} />
+          <a href="#" aria-label="Telefone"> 
+            <BsFillTelephoneFill className={`${styles.icon} ${styles.phoneIcon}`}/>
           </a>
         </div>
       </nav>
