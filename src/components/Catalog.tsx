@@ -21,17 +21,26 @@ import Produto12 from '@/img/produto12.svg';
 import Produto13 from '@/img/produto13.svg';
 import Produto14 from '@/img/produto14.svg';
 import Produto15 from '@/img/produto15.svg';
+import Produto16 from '@/img/produto16.svg';
+import Produto17 from '@/img/produto17.svg';
+import Produto18 from '@/img/produto18.svg';
+import Produto19 from '@/img/produto19.svg';
+import Produto20 from '@/img/produto20.svg';
+import Produto21 from '@/img/produto21.svg';
+import Produto22 from '@/img/produto22.svg';
+import Produto23 from '@/img/produto23.svg';
+import Produto24 from '@/img/produto24.svg';
 
 const Catalog = () => {
   // Product data - Page 1
   const page1Products = [
     { id: 1, name: "Sofá Retrátil", price: "R$1.800,00", image: produto01 },
-    { id: 2, name: "Cadeira", price: "R$350,00", image: Produto02 },
-    { id: 3, name: "Cadeira Acolchoada", price: "R$610,00", image: Produto03 },
+    { id: 2, name: "Cama", price: "R$2.150,00", image: Produto02 },
+    { id: 3, name: "Mesa de Centro", price: "R$610,00", image: Produto03 },
     { id: 4, name: "Poltrona", price: "R$780,00", image: Produto04 },
     { id: 5, name: "Mini Poltrona", price: "R$560,00", image: Produto05 },
     { id: 6, name: "Mesa", price: "R$370,00", image: Produto06 },
-    { id: 7, name: "Sofá", price: "R$1.400,00", image: Produto07 },
+    { id: 7, name: "Prateleira Decorativa", price: "R$200,00", image: Produto07 },
     { id: 8, name: "Cadeira Rústica", price: "R$520,00", image: Produto08 },
   ];
 
@@ -44,19 +53,19 @@ const Catalog = () => {
     { id: 13, name: "Conjunto de Mesa", price: "R$12.500,00", image: Produto13 },
     { id: 14, name: "Abajur Moderno", price: "R$350,00", image: Produto14 },
     { id: 15, name: "Mesa de Varanda", price: "R$850,00", image: Produto15 },
-    { id: 16, name: "Rack de Canto", price: "R$720,00", image: produto01 },
+    { id: 16, name: "Vaso de Plantas", price: "R$720,00", image: Produto16 },
   ];
 
   // Product data - Page 3
   const page3Products = [
-    { id: 17, name: "Banqueta Alta", price: "R$380,00", image: produto01 },
-    { id: 18, name: "Mesa de Centro", price: "R$600,00", image: produto01 },
-    { id: 19, name: "Sofá de Canto", price: "R$3.200,00", image: produto01 },
-    { id: 20, name: "Estante Flutuante", price: "R$450,00", image: produto01 },
-    { id: 21, name: "Cama Box Casal", price: "R$1.500,00", image: produto01 },
-    { id: 22, name: "Lustre Moderno", price: "R$1.800,00", image: produto01 },
-    { id: 23, name: "Poltrona Giratória", price: "R$1.300,00", image: produto01 },
-    { id: 24, name: "Rack Multiuso", price: "R$950,00", image: produto01 },
+    { id: 17, name: "Sofá de canto em L", price: "R$380,00", image: Produto17 },
+    { id: 18, name: "Mesa", price: "R$600,00", image: Produto18 },
+    { id: 19, name: "Mesinha", price: "R$3.200,00", image: Produto19 },
+    { id: 20, name: "Cadeira Acolchoada", price: "R$450,00", image: Produto20 },
+    { id: 21, name: "Cama", price: "R$1.500,00", image: Produto21 },
+    { id: 22, name: "Espreguiçadeira", price: "R$1.800,00", image: Produto22 },
+    { id: 23, name: "Cama de Casal", price: "R$1.300,00", image: Produto23 },
+    { id: 24, name: "Prateleira Multiuso", price: "R$950,00", image: Produto24 },
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -83,6 +92,7 @@ const Catalog = () => {
               Todos os produtos
             </button>
             <button className={styles.categoryButton}>Cadeiras</button>
+            <button className={styles.categoryButton}>Sofás</button>
             <button className={styles.categoryButton}>Mesas</button>
             <button className={styles.categoryButton}>Camas</button>
             <button className={styles.categoryButton}>Acessórios</button>
