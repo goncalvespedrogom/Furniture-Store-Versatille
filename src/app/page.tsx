@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import Banner from '@/components/Banner';
 import Options from '@/components/Options'
 import Catalog from '@/components/Catalog';
+import Footer from '@/components/Footer';
 
 const Home: NextPage = () => {
     return (
@@ -10,6 +11,7 @@ const Home: NextPage = () => {
             <Banner />
             <Options />
             <Catalog />
+            <Footer />
         </div>
     );
 };
