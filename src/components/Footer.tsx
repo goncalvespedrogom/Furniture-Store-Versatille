@@ -1,53 +1,40 @@
-import styles from "../styles/Footer.module.css";
-import {
-  FaInstagram,
-  FaFacebookF,
-  FaTwitter,
-  FaEnvelope,
-} from "react-icons/fa";
+// components/Footer.tsx
+import React from 'react';
+import styles from '../styles/Footer.module.css';
+import Image from 'next/image';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.footerLogo}>
-        <img
-          src="/caminho-para-sua-logo.png"
-          alt="Logo"
-          className={styles.logo}
-        />
-        <div className={styles.socialIcons}>
-          <a href="#" aria-label="Instagram">
-            <FaInstagram />
-          </a>
-          <a href="#" aria-label="Facebook">
-            <FaFacebookF />
-          </a>
-          <a href="#" aria-label="Twitter">
-            <FaTwitter />
-          </a>
+    <div className={styles.footerBackground}>
+      <div className={styles.footerContainer}>
+        <div className={styles.topSection}>
+          <div className={styles.brandSection}>
+            <div className={styles.logoAndName}>
+              <div className={styles.logoPlaceholder}></div>
+              <h2 className={styles.brandName}>dreamy.</h2>
+            </div>
+            <p className={styles.tagline}>
+              Dreamy List for. Certifi cly<br />
+              crafi ed UI components for<br />
+              Addice Experience Design.
+            </p>
+          </div>
+
+          <nav className={styles.navLinks}>
+            <a href="#" className={styles.link}>GUIA</a>
+            <a href="#" className={styles.link}>GALERIA</a>
+            <a href="#" className={styles.link}>PROJETOS</a>
+            <a href="#" className={styles.link}>CONTATO</a>
+          </nav>
+        </div>
+
+        <div className={styles.divider}></div>
+
+        <div className={styles.copyright}>
+          © 2025 Dreamy Inc. All rights reserved.
         </div>
       </div>
-
-      <div className={styles.footerContacts}>
-        <h3>Contatos</h3>
-        <p>exemplo@gmail.com</p>
-        <p>Rua Fictícia, 123 - Centro, Cidade/Estado</p>
-        <p>(00) 1234-5678</p>
-      </div>
-
-      <div className={styles.footerNewsletter}>
-        <h3>SE INSCREVA</h3>
-        <p>
-          Cadastre seu e-mail e seja notificado de novos lançamentos e promoções
-        </p>
-        <form className={styles.newsletterForm}>
-          <input type="email" placeholder="Seu e-mail" required />
-          <button type="submit">
-            <FaEnvelope />
-          </button>
-        </form>
-      </div>
-    </footer>
+    </div>
   );
 };
 
