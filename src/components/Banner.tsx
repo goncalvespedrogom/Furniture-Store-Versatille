@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Banner.module.css";
-import { FaHeart, FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import { FaHeart, FaLinkedin, FaGithub } from "react-icons/fa";
 import { BsFillTelephoneFill, BsEnvelopeFill } from "react-icons/bs";
 import Logo from "@/img/logo.svg";
 import ImgTopo from "@/img/img-topo-do-site.svg";
