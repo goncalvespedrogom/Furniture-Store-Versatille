@@ -2,6 +2,7 @@
 import React from 'react';
 import styles from '../styles/Footer.module.css';
 import Image from 'next/image';
+import LogoFooter from '@/img/logofooter.svg'
 
 const Footer: React.FC = () => {
   return (
@@ -10,13 +11,17 @@ const Footer: React.FC = () => {
         <div className={styles.topSection}>
           <div className={styles.brandSection}>
             <div className={styles.logoAndName}>
-              <div className={styles.logoPlaceholder}></div>
-              <h2 className={styles.brandName}>dreamy.</h2>
+              <Image 
+                src={ LogoFooter }
+                alt="Versatille Logo" 
+                className={styles.logo}
+              />
+              <h2 className={styles.brandName}>versatille.</h2>
             </div>
             <p className={styles.tagline}>
-              Dreamy List for. Certifi cly<br />
-              crafi ed UI components for<br />
-              Addice Experience Design.
+              Transforme seu espaço
+              com <br /> elegância e sofisticação. <br />
+              Móveis exclusivos para um <br />estilo de vida moderno.
             </p>
           </div>
 
@@ -31,7 +36,7 @@ const Footer: React.FC = () => {
         <div className={styles.divider}></div>
 
         <div className={styles.copyright}>
-          © 2025 Dreamy Inc. All rights reserved.
+          © 2025 Versatille. All rights reserved.
         </div>
       </div>
     </div>
