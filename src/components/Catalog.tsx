@@ -1,9 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image, { StaticImageData } from "next/image";
 import styles from "../styles/Catalog.module.css";
-import { FaChevronUp, FaChevronDown, FaStar } from "react-icons/fa";
+import { 
+  FaChevronUp, 
+  FaChevronDown, 
+  FaStar,
+  FaSortAlphaDown,
+  FaSortAlphaDownAlt,
+  FaSortAmountDown,
+  FaSortAmountDownAlt
+} from "react-icons/fa";
 
 // Import product images
 import produto01 from "@/img/produto01.svg";
@@ -31,7 +39,6 @@ import Produto22 from '@/img/produto22.svg';
 import Produto23 from '@/img/produto23.svg';
 import Produto24 from '@/img/produto24.svg';
 
-// Type definitions
 type CategoryId = "all" | "cadeiras" | "sofas" | "mesas" | "camas" | "acessorios";
 
 interface Product {
@@ -48,7 +55,6 @@ interface Category {
 }
 
 const Catalog = () => {
-  // All products data with proper typing
   const allProducts: Product[] = [
     { id: 1, name: "Sofá Retrátil", price: "R$1.800,00", image: produto01, category: "sofas" },
     { id: 2, name: "Cama", price: "R$2.150,00", image: Produto02, category: "camas" },
@@ -76,7 +82,6 @@ const Catalog = () => {
     { id: 24, name: "Prateleira Multiuso", price: "R$950,00", image: Produto24, category: "acessorios" }
   ];
 
-  // Categories configuration
   const categories: Category[] = [
     { id: "all", name: "Todos os produtos" },
     { id: "cadeiras", name: "Cadeiras" },
@@ -88,36 +93,79 @@ const Catalog = () => {
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [selectedCategory, setSelectedCategory] = useState<CategoryId>("all");
+  const [showFilterOptions, setShowFilterOptions] = useState<boolean>(false);
+  const [sortOption, setSortOption] = useState<string>("default");
   const productsPerPage = 8;
+  const filterRef = useRef<HTMLDivElement>(null);
 
-  // Filter products by category
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (filterRef.current && !filterRef.current.contains(event.target as Node)) {
+        setShowFilterOptions(false);
+      }
+    };
+
+    if (showFilterOptions) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showFilterOptions]);
+
+  const parsePrice = (priceString: string): number => {
+    return parseFloat(priceString.replace("R$", "").replace(".", "").replace(",", "."));
+  };
+
   const filteredProducts = selectedCategory === "all" 
-    ? allProducts 
+    ? [...allProducts] 
     : allProducts.filter(product => product.category === selectedCategory);
 
-  // Calculate pagination
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-  const currentProducts = filteredProducts.slice(
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortOption) {
+      case "name-asc":
+        return a.name.localeCompare(b.name);
+      case "name-desc":
+        return b.name.localeCompare(a.name);
+      case "price-asc":
+        return parsePrice(a.price) - parsePrice(b.price);
+      case "price-desc":
+        return parsePrice(b.price) - parsePrice(a.price);
+      default:
+        return 0;
+    }
+  });
+
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
+  const currentProducts = sortedProducts.slice(
     (currentPage - 1) * productsPerPage,
     currentPage * productsPerPage
   );
 
-  // Reset to page 1 when category changes
   const handleCategoryChange = (categoryId: CategoryId) => {
     setSelectedCategory(categoryId);
     setCurrentPage(1);
   };
 
+  const toggleFilterOptions = () => {
+    setShowFilterOptions(!showFilterOptions);
+  };
+
+  const handleSortOption = (option: string) => {
+    setSortOption(option);
+    setCurrentPage(1);
+    setShowFilterOptions(false);
+  };
+
   return (
     <div className={styles.sectionWithBackground}>
       <div className={styles.catalogContainer}>
-        {/* Title section */}
         <div className={styles.titleContainer}>
           <h1 className={styles.title}>Showroom</h1>
           <div className={styles.titleBorder}></div>
         </div>
 
-        {/* Navigation and filter */}
         <div className={styles.navContainer}>
           <div className={styles.categories}>
             {categories.map(category => (
@@ -131,18 +179,64 @@ const Catalog = () => {
             ))}
           </div>
 
-          <div className={styles.filterContainer}>
-            <button className={styles.filterButton}>
-              Filtro
+          <div className={styles.filterContainer} ref={filterRef}>
+            <button 
+              className={styles.filterButton}
+              onClick={toggleFilterOptions}
+            >
+              Ordem
               <span className={styles.filterIcons}>
                 <FaChevronUp className={styles.filterIcon} />
                 <FaChevronDown className={styles.filterIcon} />
               </span>
             </button>
+            
+            {showFilterOptions && (
+              <div className={styles.filterDropdown}>
+                <div className={styles.filterGroup}>
+                  <h4 className={styles.filterGroupTitle}>Ordenar por nome</h4>
+                  <div className={styles.filterOptionsRow}>
+                    <button 
+                      className={`${styles.filterIconButton} ${sortOption === 'name-asc' ? styles.activeFilter : ''}`}
+                      onClick={() => handleSortOption('name-asc')}
+                      title="Ordenar A-Z"
+                    >
+                      <FaSortAlphaDown className={styles.filterOptionIcon} />
+                    </button>
+                    <button 
+                      className={`${styles.filterIconButton} ${sortOption === 'name-desc' ? styles.activeFilter : ''}`}
+                      onClick={() => handleSortOption('name-desc')}
+                      title="Ordenar Z-A"
+                    >
+                      <FaSortAlphaDownAlt className={styles.filterOptionIcon} />
+                    </button>
+                  </div>
+                </div>
+                
+                <div className={styles.filterGroup}>
+                  <h4 className={styles.filterGroupTitle}>Ordenar por preço</h4>
+                  <div className={styles.filterOptionsRow}>
+                    <button 
+                      className={`${styles.filterIconButton} ${sortOption === 'price-asc' ? styles.activeFilter : ''}`}
+                      onClick={() => handleSortOption('price-asc')}
+                      title="Ordenar do menor para o maior"
+                    >
+                      <FaSortAmountDown className={styles.filterOptionIcon} />
+                    </button>
+                    <button 
+                      className={`${styles.filterIconButton} ${sortOption === 'price-desc' ? styles.activeFilter : ''}`}
+                      onClick={() => handleSortOption('price-desc')}
+                      title="Ordenar do maior para o menor"
+                    >
+                      <FaSortAmountDownAlt className={styles.filterOptionIcon} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Product grid */}
         <div className={styles.productsGrid}>
           {currentProducts.map((product) => (
             <div key={product.id} className={styles.productCard}>
@@ -170,7 +264,6 @@ const Catalog = () => {
           ))}
         </div>
 
-        {/* Pagination - Only show if more than one page */}
         {totalPages > 1 && (
           <div className={styles.pagination}>
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
