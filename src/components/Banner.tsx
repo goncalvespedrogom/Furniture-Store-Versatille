@@ -25,6 +25,25 @@ const Banner: React.FC = () => {
     setShowContactPopup(!showContactPopup);
   };
 
+  const scrollToSection = (targetId: string, showBanner2 = false) => {
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+
+      if (showBanner2) {
+        window.dispatchEvent(new CustomEvent('showBanner2'));
+      }
+    }
+  };
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string, showBanner2 = false) => {
+    e.preventDefault();
+    scrollToSection(targetId, showBanner2);
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -45,48 +64,49 @@ const Banner: React.FC = () => {
   }, [showContactPopup]);
 
   return (
-    <div className={styles.banner}>
-      {/* menu */}
+    <div className={styles.banner} id="home">
       <nav className={styles.menu}>
-        {/* logo à esquerda */}
         <div className={styles.logo}>
-          <Link href="/">
+          <Link href="https://versatille-devpedro.vercel.app/">
             <Image src={Logo} alt="Logo da Versatille" />
           </Link>
         </div>
 
-        {/* opções do menu no meio */}
         <ul className={styles.menuOptions}>
           <li>
-            <a href="#">Guia</a>
+            <a href="#options" onClick={(e) => handleLinkClick(e, "options")}>
+              Guia
+            </a>
           </li>
           <li>
-            <a href="#">Galeria</a>
+            <a href="#options" onClick={(e) => handleLinkClick(e, "options", true)}>
+              Conteúdos
+            </a>
           </li>
           <li>
-            <a href="#">Projetos</a>
+            <a href="#catalog" onClick={(e) => handleLinkClick(e, "catalog")}>
+              Catálogo
+            </a>
           </li>
           <li>
-            <a href="#">Loja</a>
+            <a href="#footer" onClick={(e) => handleLinkClick(e, "footer")}>Infos</a>
           </li>
         </ul>
 
-        {/* ícones à direita */}
         <div className={styles.icons}>
           <a href="#" aria-label="Favoritos">
             <FaHeart className={styles.icon} />
           </a>
-          <button 
+          <button
             ref={buttonRef}
             onClick={toggleContactPopup}
             aria-label="Contatos"
             className={styles.contactButton}
-          > 
-            <BsFillTelephoneFill className={`${styles.icon} ${styles.phoneIcon}`}/>
+          >
+            <BsFillTelephoneFill className={`${styles.icon} ${styles.phoneIcon}`} />
           </button>
         </div>
 
-        {/* Popup de contatos */}
         {showContactPopup && (
           <div className={styles.contactPopup} ref={popupRef}>
             <div className={styles.contactContent}>
@@ -101,20 +121,27 @@ const Banner: React.FC = () => {
                   <span className={styles.contactText}>goncalvespedrogom@gmail.com</span>
                 </div>
                 <div className={styles.socialIcons}>
-                  <a href="https://www.linkedin.com/in/pedro-goncalves-gomes/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+                  <a
+                    href="https://www.linkedin.com/in/pedro-goncalves-gomes/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.socialLink}
+                  >
                     <FaLinkedin className={styles.socialIcon} />
                     <span className={styles.socialText}>LinkedIn</span>
                   </a>
-                  <a href="https://github.com/goncalvespedrogom" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+                  <a
+                    href="https://github.com/goncalvespedrogom"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.socialLink}
+                  >
                     <FaGithub className={styles.socialIcon} />
                     <span className={styles.socialText}>GitHub</span>
                   </a>
                 </div>
               </div>
-              <button 
-                onClick={toggleContactPopup}
-                className={styles.closeButton}
-              >
+              <button onClick={toggleContactPopup} className={styles.closeButton}>
                 Fechar
               </button>
             </div>
@@ -122,12 +149,20 @@ const Banner: React.FC = () => {
         )}
       </nav>
 
-      {/* conteúdo centralizado */}
       <div className={styles.content}>
         <div className={styles.text}>
           <h1 className={montserrat.className}>Versatille</h1>
-          <p>Transforme o seu espaço com elegância e sofisticação. Descubra móveis exclusivos, design impecável e qualidade premium para um ambiente verdadeiramente luxuoso.</p>
-          <button className={styles.button}>Mais detalhes</button>
+          <p>
+            Transforme o seu espaço com elegância e sofisticação. Descubra
+            móveis exclusivos, design impecável e qualidade premium para um
+            ambiente verdadeiramente luxuoso.
+          </p>
+          <button 
+            className={styles.button} 
+            onClick={() => scrollToSection("options", true)}
+          >
+            Mais detalhes
+          </button>
         </div>
         <div className={styles.image}>
           <Image src={ImgTopo} alt="Móveis modernos" width={500} height={400} />
