@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Banner.module.css";
-import { FaHeart, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { BsFillTelephoneFill, BsEnvelopeFill } from "react-icons/bs";
 import Logo from "@/img/logo.svg";
 import ImgTopo from "@/img/img-topo-do-site.svg";
@@ -34,12 +34,16 @@ const Banner: React.FC = () => {
       });
 
       if (showBanner2) {
-        window.dispatchEvent(new CustomEvent('showBanner2'));
+        window.dispatchEvent(new CustomEvent("showBanner2"));
       }
     }
   };
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string, showBanner2 = false) => {
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string,
+    showBanner2 = false
+  ) => {
     e.preventDefault();
     scrollToSection(targetId, showBanner2);
   };
@@ -79,7 +83,10 @@ const Banner: React.FC = () => {
             </a>
           </li>
           <li>
-            <a href="#options" onClick={(e) => handleLinkClick(e, "options", true)}>
+            <a
+              href="#options"
+              onClick={(e) => handleLinkClick(e, "options", true)}
+            >
               Conteúdos
             </a>
           </li>
@@ -89,36 +96,38 @@ const Banner: React.FC = () => {
             </a>
           </li>
           <li>
-            <a href="#footer" onClick={(e) => handleLinkClick(e, "footer")}>Infos</a>
+            <a href="#footer" onClick={(e) => handleLinkClick(e, "footer")}>
+              Infos
+            </a>
           </li>
         </ul>
 
         <div className={styles.icons}>
-          <a href="#" aria-label="Favoritos">
-            <FaHeart className={styles.icon} />
-          </a>
           <button
             ref={buttonRef}
             onClick={toggleContactPopup}
             aria-label="Contatos"
             className={styles.contactButton}
           >
-            <BsFillTelephoneFill className={`${styles.icon} ${styles.phoneIcon}`} />
+            <span className={styles.contactTextTitle}>Contatos</span>
           </button>
         </div>
 
         {showContactPopup && (
           <div className={styles.contactPopup} ref={popupRef}>
             <div className={styles.contactContent}>
-              <h3 className={styles.contactTitle}>Contatos</h3>
               <div className={styles.contactInfo}>
                 <div className={styles.contactItem}>
                   <BsFillTelephoneFill className={styles.contactIcon} />
-                  <span className={styles.contactText}>+55 (28) 99901-7096</span>
+                  <span className={styles.contactText}>
+                    +55 (28) 99901-7096
+                  </span>
                 </div>
                 <div className={styles.contactItem}>
                   <BsEnvelopeFill className={styles.contactIcon} />
-                  <span className={styles.contactText}>goncalvespedrogom@gmail.com</span>
+                  <span className={styles.contactText}>
+                    goncalvespedrogom@gmail.com
+                  </span>
                 </div>
                 <div className={styles.socialIcons}>
                   <a
@@ -141,7 +150,10 @@ const Banner: React.FC = () => {
                   </a>
                 </div>
               </div>
-              <button onClick={toggleContactPopup} className={styles.closeButton}>
+              <button
+                onClick={toggleContactPopup}
+                className={styles.closeButton}
+              >
                 Fechar
               </button>
             </div>
@@ -157,8 +169,8 @@ const Banner: React.FC = () => {
             móveis exclusivos, design impecável e qualidade premium para um
             ambiente verdadeiramente luxuoso.
           </p>
-          <button 
-            className={styles.button} 
+          <button
+            className={styles.button}
             onClick={() => scrollToSection("options", true)}
           >
             Mais detalhes
