@@ -5,6 +5,7 @@ import React from "react";
 import styles from "../styles/Footer.module.css";
 import Image from "next/image";
 import LogoFooter from "@/img/logofooter.svg";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 const smoothScroll = (
   e: React.MouseEvent<HTMLAnchorElement>,
@@ -39,6 +40,29 @@ const Footer: React.FC = () => {
               Móveis exclusivos para um <br />
               estilo de vida moderno.
             </p>
+            <div className={styles.socialIcons}>
+              <a
+                href="https://github.com/goncalvespedrogom"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaGithub className={styles.icon} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/pedro-goncalves-gomes/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaLinkedin className={styles.icon} />
+              </a>
+              <a
+                href="https://wa.me/5528999017096?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20seu%20trabalho"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaWhatsapp className={styles.icon} />
+              </a>
+            </div>
           </div>
 
           <nav className={styles.navLinks}>
