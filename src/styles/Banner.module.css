@@ -272,3 +272,209 @@
   height: auto;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
 }
+
+.text p.description {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-top: 7rem;
+  margin-bottom: 1.3rem;
+  max-width: 360px;
+  margin-right: 40px;
+}
+
+.text p.description .fullText {
+  display: inline; /* Alterado de 'block' para 'inline' */
+}
+
+/* Responsive Styles */
+@media (max-width: 1100px) {
+  .content {
+    padding: 0 2rem;
+  }
+
+  .menu {
+    padding: 2rem 2rem;
+  }
+
+  .text {
+    color: #3b3b3b;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .text h1 {
+    font-size: 5.5rem;
+  }
+
+  .text p.description {
+    font-size: .9rem;
+    font-weight: 400;
+    margin-top: 5.5rem;
+    margin-bottom: 1.3rem;
+    max-width: 280px;
+    margin-right: 40px;
+  }
+  
+  .button {
+    font-size: .9rem;
+  }
+  
+  .image img {
+    width: 500px;
+    height: auto;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+
+@media (max-width: 880px) {
+  .menuOptions,
+  .icons {
+    display: none;
+  }
+
+  .mobileMenuButton {
+    display: flex;
+    background: transparent;
+    border: none;
+    color: #3b3b3b;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  .mobileMenu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 60%;
+    max-width: 300px;
+    height: 100vh;
+    background: #3b3b3b;
+    transition: right 0.3s ease;
+    z-index: 90;
+    padding: 2rem 1.8rem;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .mobileMenu.show {
+    right: 0;
+  }
+
+  .mobileMenuCloseButton {
+    position: absolute;
+    top: 2.5rem;
+    left: 1.5rem;
+    background: transparent;
+    border: none;
+    color: #555;
+    font-size: 2.2rem;
+    cursor: pointer;
+  }
+
+  .mobileMenuOptions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 2.5rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .mobileMenuOptions li:last-child {
+    padding: 1rem 0;
+  }
+
+  .mobileMenuItem {
+    padding: 1rem 0;
+    border-bottom: 1px solid #555;
+  }
+
+  .mobileMenuItem:last-child {
+    border-bottom: none;
+    margin-top: 1rem;
+  }
+
+  .mobileMenuOptions li a {
+    color: #f7f7f7;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: block;
+    padding: 0.5rem 0;
+  }
+
+  .mobileContactButton {
+    background: #f7f7f7;
+    color: #3b3b3b;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 2px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .content {
+    flex-direction: column;
+    margin-top: 8rem;
+    text-align: center;
+  }
+
+  .text h1 {
+    position: static;
+    font-size: 3.5rem; /* Reduzi de 4.5rem para 3.5rem */
+    margin-bottom: 0.5rem;
+  }
+
+  .text p {
+    margin: 1rem auto;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .image img {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 2rem;
+  }
+
+  .contactPopup {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%;
+    width: 90%;
+    max-width: 320px;
+  }
+
+  .text p.description {
+    margin: 1rem auto;
+    margin-top: -.5rem;
+    max-width: 100%;
+    text-align: center;
+    font-size: 1rem; /* Reduzi de 1.2rem para 1rem */
+    line-height: 1.5;
+  }
+
+  .text p.description .fullText {
+    display: none;
+  }
+
+  .content {
+    padding: 0 2rem; /* Adicionei padding lateral */
+  }
+
+  .button {
+    font-size: .9rem;
+  }
+}
+
+@media (min-width: 881px) {
+  .mobileMenuButton,
+  .mobileMenu {
+    display: none;
+  }
+}

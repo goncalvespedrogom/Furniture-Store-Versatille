@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Banner.module.css";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaBars, FaTimes } from "react-icons/fa";
 import { BsFillTelephoneFill, BsEnvelopeFill } from "react-icons/bs";
 import Logo from "@/img/logo.svg";
 import ImgTopo from "@/img/img-topo-do-site.svg";
@@ -18,11 +18,17 @@ const montserrat = Montserrat({
 
 const Banner: React.FC = () => {
   const [showContactPopup, setShowContactPopup] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const toggleContactPopup = () => {
     setShowContactPopup(!showContactPopup);
+  };
+
+  const toggleMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
   };
 
   const scrollToSection = (targetId: string, showBanner2 = false) => {
@@ -37,6 +43,7 @@ const Banner: React.FC = () => {
         window.dispatchEvent(new CustomEvent("showBanner2"));
       }
     }
+    setShowMobileMenu(false);
   };
 
   const handleLinkClick = (
@@ -59,13 +66,22 @@ const Banner: React.FC = () => {
       ) {
         setShowContactPopup(false);
       }
+
+      if (
+        showMobileMenu &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node) &&
+        !(event.target as HTMLElement).closest(`.${styles.mobileMenuButton}`)
+      ) {
+        setShowMobileMenu(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [showContactPopup]);
+  }, [showContactPopup, showMobileMenu]);
 
   return (
     <div className={styles.banner} id="home">
@@ -112,6 +128,14 @@ const Banner: React.FC = () => {
             <span className={styles.contactTextTitle}>Contatos</span>
           </button>
         </div>
+
+        <button
+          className={styles.mobileMenuButton}
+          onClick={toggleMobileMenu}
+          aria-label="Menu"
+        >
+          {showMobileMenu ? <FaTimes /> : <FaBars />}
+        </button>
 
         {showContactPopup && (
           <div className={styles.contactPopup} ref={popupRef}>
@@ -161,13 +185,56 @@ const Banner: React.FC = () => {
         )}
       </nav>
 
+      {/* Mobile Menu */}
+      <div
+        className={`${styles.mobileMenu} ${showMobileMenu ? styles.show : ""}`}
+        ref={mobileMenuRef}
+      >
+        <button
+          className={styles.mobileMenuCloseButton}
+          onClick={toggleMobileMenu}
+          aria-label="Fechar menu"
+        >
+          <FaTimes />
+        </button>
+
+        <ul className={styles.mobileMenuOptions}>
+          <li className={styles.mobileMenuItem}>
+            <a href="#options" onClick={(e) => handleLinkClick(e, "options")}>
+              Guia
+            </a>
+          </li>
+          <li className={styles.mobileMenuItem}>
+            <a
+              href="#options"
+              onClick={(e) => handleLinkClick(e, "options", true)}
+            >
+              Conteúdos
+            </a>
+          </li>
+          <li className={styles.mobileMenuItem}>
+            <a href="#catalog" onClick={(e) => handleLinkClick(e, "catalog")}>
+              Catálogo
+            </a>
+          </li>
+          <li>
+            <a href="#footer" onClick={(e) => handleLinkClick(e, "footer")}>
+              Infos
+            </a>
+          </li>
+        </ul>
+      </div>
+
       <div className={styles.content}>
         <div className={styles.text}>
           <h1 className={montserrat.className}>Versatille</h1>
-          <p>
-            Transforme o seu espaço com elegância e sofisticação. Descubra
-            móveis exclusivos, design impecável e qualidade premium para um
-            ambiente verdadeiramente luxuoso.
+          <p className={styles.description}>
+            Transforme o seu espaço com elegância e sofisticação.{" "}
+            {/* Espaço adicionado aqui */}
+            <span className={styles.fullText}>
+              Descubra móveis exclusivos, design impecável e qualidade premium
+              para um ambiente verdadeiramente luxuoso.
+            </span>
           </p>
           <button
             className={styles.button}
