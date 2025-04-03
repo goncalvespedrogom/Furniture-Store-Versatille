@@ -314,17 +314,77 @@ const Catalog = () => {
     setShowFilterOptions(false);
   };
 
+  const [showCategoryMenu, setShowCategoryMenu] = useState<boolean>(false);
+  const categoryMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        filterRef.current &&
+        !filterRef.current.contains(event.target as Node) &&
+        categoryMenuRef.current &&
+        !categoryMenuRef.current.contains(event.target as Node)
+      ) {
+        setShowFilterOptions(false);
+        setShowCategoryMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className={styles.sectionWithBackground} id="catalog">
       <div className={styles.catalogContainer}>
         <div className={styles.titleContainer}>
           <h1 className={styles.title}>Showroom</h1>
-          {/*  */}
           <div className={styles.titleBorder}></div>
         </div>
 
         <div className={styles.navContainer}>
-          <div className={styles.categories}>
+          {/* Mobile Categories Button */}
+          <div
+            className={styles.mobileCategoriesContainer}
+            ref={categoryMenuRef}
+          >
+            <button
+              className={styles.filterButton}
+              onClick={() => setShowCategoryMenu(!showCategoryMenu)}
+            >
+              Categorias
+              <span className={styles.filterIcons}>
+                <FaChevronUp className={styles.filterIcon} />
+                <FaChevronDown className={styles.filterIcon} />
+              </span>
+            </button>
+
+            {showCategoryMenu && (
+              <div className={styles.filterDropdown}>
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    className={`${styles.categoryMenuButton} ${
+                      selectedCategory === category.id
+                        ? styles.activeFilter
+                        : ""
+                    }`}
+                    onClick={() => {
+                      handleCategoryChange(category.id);
+                      setShowCategoryMenu(false);
+                    }}
+                  >
+                    {category.name}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Desktop Categories List */}
+          <div className={styles.desktopCategories}>
             {categories.map((category) => (
               <button
                 key={category.id}
@@ -338,6 +398,7 @@ const Catalog = () => {
             ))}
           </div>
 
+          {/* Filter Button */}
           <div className={styles.filterContainer} ref={filterRef}>
             <button
               className={styles.filterButton}

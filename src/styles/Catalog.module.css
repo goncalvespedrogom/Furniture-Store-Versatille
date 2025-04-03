@@ -16,10 +16,10 @@
   min-height: 65rem;
 }
 
-/* Title styles */
+/* Title styles - Mantido o valor original para desktop */
 .titleContainer {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 4rem; /* Valor original mantido */
 }
 
 .title {
@@ -36,19 +36,28 @@
   margin: 0 auto;
 }
 
-/* Navigation bar */
+/* Navigation bar - Mantido o valor original para desktop */
 .navContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3rem; /* Valor original mantido */
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.categories {
+/* Desktop categories */
+.desktopCategories {
   display: flex;
   gap: 1.8rem;
   flex-wrap: wrap;
+}
+
+/* Mobile categories */
+.mobileCategoriesContainer {
+  position: relative;
+  display: none;
+  width: 100%;
 }
 
 .categoryButton {
@@ -72,13 +81,37 @@
 }
 
 .categoryButton.active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 2px;
   background-color: #3b3b3b1e;
+}
+
+/* Category menu buttons */
+.categoryMenuButton {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #f7f7f7;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.categoryMenuButton:hover {
+  background-color: #535353;
+}
+
+.categoryMenuButton.activeFilter {
+  background-color: #f0f0f0;
+  color: #3b3b3b;
+  font-weight: bold;
 }
 
 /* Filter button */
@@ -146,7 +179,7 @@
 .filterGroupTitle {
   margin: 0 0 0.8rem 0;
   font-size: 0.9rem;
-  color: #F7F7F7;
+  color: #f7f7f7;
   font-weight: 600;
   text-align: center;
 }
@@ -185,12 +218,12 @@
   font-size: 1.2rem;
 }
 
-/* Product grid */
+/* Product grid - Mantido o valor original para desktop */
 .productsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 3rem; /* Valor original mantido */
 }
 
 .productCard {
@@ -315,56 +348,135 @@
   }
 }
 
+/* Responsiveness */
+@media (max-width: 1200px) {
+  .productsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
-  .navContainer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+  /* Ajuste para reduzir espaço lateral nos produtos */
+  .catalogContainer {
+    padding: 0 0.8rem; /* Reduz o padding lateral */
   }
 
+  /* Show mobile categories and hide desktop */
+  .mobileCategoriesContainer {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  .desktopCategories {
+    display: none;
+  }
+
+  .navContainer {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .mobileCategoriesContainer,
   .filterContainer {
-    width: 100%;
+    width: auto;
+    margin: 0;
+    flex-shrink: 0;
   }
 
   .filterButton {
-    width: 100%;
+    width: auto;
+    min-width: 100px;
+    padding: 8px 15px;
+    text-align: center;
   }
 
   .productsGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: 1.2rem; /* Reduzido ligeiramente o gap entre produtos */
+    margin-top: 2rem;
   }
-  
+
   .productName {
     padding-right: 70px;
     font-size: 0.9rem;
   }
 
   .filterDropdown {
-    width: 100%;
-    box-sizing: border-box;
+    width: 200px;
+    right: 0;
+    transform: none;
+    padding: 1rem 0.9rem;
+  }
+
+  .titleContainer {
+    margin-bottom: 3rem;
   }
 }
 
 @media (max-width: 480px) {
+  /* Ajuste adicional para telas muito pequenas */
+  .catalogContainer {
+    padding: 0 2rem; /* Espaço lateral ainda menor */
+  }
+
   .title {
     font-size: 2.2rem;
   }
 
   .productsGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  .navContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mobileCategoriesContainer,
+  .filterContainer {
+    width: 100%;
+    max-width: 200px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .filterButton {
+    width: 100%;
+    justify-content: center;
   }
 
   .categoryButton {
     font-size: 0.9rem;
   }
-  
+
   .productName {
     padding-right: 60px;
   }
-  
+
   .productInfo {
     min-height: 55px;
+  }
+
+  .filterDropdown {
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  .mobileCategoriesContainer .filterDropdown {
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  .titleContainer {
+    margin-bottom: 2.5rem;
   }
 }
