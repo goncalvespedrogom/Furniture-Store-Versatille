@@ -26,6 +26,7 @@ const Footer: React.FC = () => {
     <div className={styles.footerBackground} id="footer">
       <div className={styles.footerContainer}>
         <div className={styles.topSection}>
+          {/* Desktop: Mantém o layout original */}
           <div className={styles.brandSection}>
             <div className={styles.logoAndName}>
               <Image
