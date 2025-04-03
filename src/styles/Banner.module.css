@@ -328,6 +328,10 @@
 
 
 @media (max-width: 880px) {
+  .banner {
+    height: 640px;
+  }
+
   .menuOptions,
   .icons {
     display: none;

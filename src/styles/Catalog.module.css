@@ -356,6 +356,11 @@
 }
 
 @media (max-width: 768px) {
+  .sectionWithBackground {
+    background-color: red;
+    padding: 3rem 0rem;
+  }
+
   /* Ajuste para reduzir espaço lateral nos produtos */
   .catalogContainer {
     padding: 0 0.8rem; /* Reduz o padding lateral */
