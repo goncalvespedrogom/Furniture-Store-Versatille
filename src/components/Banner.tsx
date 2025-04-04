@@ -23,36 +23,62 @@ const Banner: React.FC = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
+  const isMobileView = () => window.innerWidth < 1780;
+
+  const scrollToSection = (targetId: string, showSecondContent = false) => {
+    setShowMobileMenu(false);
+
+    if (targetId === "options") {
+      if (isMobileView()) {
+        // Comportamento para mobile
+        const optionsMobile = document.getElementById('optionsMobile');
+        if (optionsMobile) {
+          optionsMobile.scrollIntoView({ behavior: 'smooth' });
+          
+          if (showSecondContent) {
+            setTimeout(() => {
+              window.dispatchEvent(new CustomEvent("showMobileSlide", {
+                detail: { slideIndex: 1 }
+              }));
+            }, 500);
+          }
+        }
+      } else {
+        // Comportamento para desktop
+        const optionsDesktop = document.getElementById('options');
+        if (optionsDesktop) {
+          optionsDesktop.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          
+          if (showSecondContent) {
+            window.dispatchEvent(new CustomEvent("showBanner2"));
+          }
+        }
+      }
+      return;
+    }
+
+    // Comportamento padrão para outras seções
+    const section = document.getElementById(targetId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string,
+    showSecondContent = false
+  ) => {
+    e.preventDefault();
+    scrollToSection(targetId, showSecondContent);
+  };
+
   const toggleContactPopup = () => {
     setShowContactPopup(!showContactPopup);
   };
 
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
-  };
-
-  const scrollToSection = (targetId: string, showBanner2 = false) => {
-    const targetSection = document.getElementById(targetId);
-    if (targetSection) {
-      targetSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-
-      if (showBanner2) {
-        window.dispatchEvent(new CustomEvent("showBanner2"));
-      }
-    }
-    setShowMobileMenu(false);
-  };
-
-  const handleLinkClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    targetId: string,
-    showBanner2 = false
-  ) => {
-    e.preventDefault();
-    scrollToSection(targetId, showBanner2);
   };
 
   useEffect(() => {
@@ -88,7 +114,7 @@ const Banner: React.FC = () => {
       <nav className={styles.menu}>
         <div className={styles.logo}>
           <Link href="https://versatille-devpedro.vercel.app/">
-            <Image src={Logo} alt="Logo da Versatille" />
+            <Image src={Logo} alt="Logo da Versatille" width={150} height={50} />
           </Link>
         </div>
 
@@ -185,7 +211,6 @@ const Banner: React.FC = () => {
         )}
       </nav>
 
-      {/* Mobile Menu */}
       <div
         className={`${styles.mobileMenu} ${showMobileMenu ? styles.show : ""}`}
         ref={mobileMenuRef}
@@ -217,7 +242,7 @@ const Banner: React.FC = () => {
               Catálogo
             </a>
           </li>
-          <li>
+          <li className={styles.mobileMenuItem}>
             <a href="#footer" onClick={(e) => handleLinkClick(e, "footer")}>
               Infos
             </a>
@@ -230,7 +255,6 @@ const Banner: React.FC = () => {
           <h1 className={montserrat.className}>Versatille</h1>
           <p className={styles.description}>
             Transforme o seu espaço com elegância e sofisticação.{" "}
-            {/* Espaço adicionado aqui */}
             <span className={styles.fullText}>
               Descubra móveis exclusivos, design impecável e qualidade premium
               para um ambiente verdadeiramente luxuoso.
