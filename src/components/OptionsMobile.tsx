@@ -5,11 +5,13 @@ import Image from "next/image";
 import styles from "@/styles/OptionsMobile.module.css";
 import Banner1 from "@/img/banner1-mobile.svg";
 import Banner2 from "@/img/banner2-mobile.svg";
-import Banner3 from "@/img/banner3-mobile.svg"; // Importe a nova imagem
+import Banner3 from "@/img/banner3-mobile.svg";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { useRouter } from "next/navigation";
 
 const OptionsMobile = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const router = useRouter();
 
   const slides = [
     {
@@ -19,6 +21,7 @@ const OptionsMobile = () => {
       image: Banner1,
       buttonText: "Conferir",
       showButton: true,
+      buttonAction: () => setCurrentSlide(1) // Avança para o slide de Conteúdos
     },
     {
       title: "Conteúdos",
@@ -35,6 +38,13 @@ const OptionsMobile = () => {
       image: Banner3,
       buttonText: "Mais detalhes",
       showButton: true,
+      buttonAction: () => {
+        // Rola suavemente para a seção #catalog
+        const catalogSection = document.getElementById('catalog');
+        if (catalogSection) {
+          catalogSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     },
   ];
 
@@ -63,7 +73,10 @@ const OptionsMobile = () => {
         </div>
 
         {slides[currentSlide].showButton && (
-          <button className={styles.button}>
+          <button 
+            className={styles.button}
+            onClick={slides[currentSlide].buttonAction}
+          >
             {slides[currentSlide].buttonText}
           </button>
         )}
