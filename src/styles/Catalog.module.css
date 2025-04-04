@@ -357,7 +357,6 @@
 
 @media (max-width: 768px) {
   .sectionWithBackground {
-    background-color: red;
     padding: 3rem 0rem;
   }
 

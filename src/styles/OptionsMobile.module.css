@@ -1,0 +1,162 @@
+.section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../img/background.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 2rem 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 1rem 2rem 1rem;
+}
+
+.title {
+  color: #3b3b3b;
+  font-size: 5rem;
+  font-weight: 600;
+  margin: 0;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.subtitle {
+  color: #3b3b3b;
+  font-size: 1rem;
+  margin: 0;
+  max-width: 500px;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.button {
+  background-color: transparent;
+  border: 2px solid #3b3b3b;
+  color: #3b3b3b;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  font-family: "Poppins";
+}
+
+.button:hover {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+.imageContainer {
+  margin-bottom: 3rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.arrowsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.arrowButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.arrowIcon {
+  color: #3b3b3b;
+  font-size: 2rem;
+  transition: transform 0.2s ease;
+}
+
+.arrowButton:hover .arrowIcon {
+  transform: scale(1.2);
+  color: #2a2a2a;
+}
+
+/* Responsividade */
+@media (min-width: 1780px) {
+  .section {
+    display: none;
+  }
+}
+
+@media (max-width: 880px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .imageContainer {
+    max-width: 400px;
+  }
+
+  .content {
+    padding: 0 3rem;
+  }
+}
+
+@media (max-width: 499px) {
+  .section {
+    padding-bottom: 1rem;
+  }
+
+  .content {
+    padding: 0 1.5rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    max-width: 300px;
+    margin-bottom: 2rem;
+  }
+
+  .button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .imageContainer {
+    margin-bottom: 2rem;
+    max-width: 300px;
+  }
+
+  .arrowsContainer {
+    margin-top: 2.5rem;
+  }
+
+  .arrowIcon {
+    font-size: 1.8rem;
+  }
+}

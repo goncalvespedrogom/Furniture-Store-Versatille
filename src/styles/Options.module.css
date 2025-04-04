@@ -207,3 +207,10 @@
 .arrowRight {
     right: 20%;
 }
+
+  /* Esconde o componente em telas menores que 1780px */
+  @media (max-width: 1780px) {
+    .options {
+        display: none;
+    }
+  }
