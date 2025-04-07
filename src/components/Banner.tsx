@@ -19,6 +19,7 @@ const montserrat = Montserrat({
 const Banner: React.FC = () => {
   const [showContactPopup, setShowContactPopup] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -27,10 +28,10 @@ const Banner: React.FC = () => {
 
   const scrollToSection = (targetId: string, showSecondContent = false) => {
     setShowMobileMenu(false);
+    setShowOverlay(false);
 
     if (targetId === "options") {
       if (isMobileView()) {
-        // Comportamento para mobile
         const optionsMobile = document.getElementById('optionsMobile');
         if (optionsMobile) {
           optionsMobile.scrollIntoView({ behavior: 'smooth' });
@@ -44,7 +45,6 @@ const Banner: React.FC = () => {
           }
         }
       } else {
-        // Comportamento para desktop
         const optionsDesktop = document.getElementById('options');
         if (optionsDesktop) {
           optionsDesktop.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -57,7 +57,6 @@ const Banner: React.FC = () => {
       return;
     }
 
-    // Comportamento padrão para outras seções
     const section = document.getElementById(targetId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -79,6 +78,7 @@ const Banner: React.FC = () => {
 
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
+    setShowOverlay(!showMobileMenu);
   };
 
   useEffect(() => {
@@ -100,6 +100,7 @@ const Banner: React.FC = () => {
         !(event.target as HTMLElement).closest(`.${styles.mobileMenuButton}`)
       ) {
         setShowMobileMenu(false);
+        setShowOverlay(false);
       }
     };
 
@@ -109,8 +110,25 @@ const Banner: React.FC = () => {
     };
   }, [showContactPopup, showMobileMenu]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (showMobileMenu) {
+        setShowMobileMenu(false);
+        setShowOverlay(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [showMobileMenu]);
+
   return (
     <div className={styles.banner} id="home">
+      <div 
+        className={`${styles.overlay} ${showOverlay ? styles.showOverlay : ''}`}
+        onClick={toggleMobileMenu}
+      ></div>
+
       <nav className={styles.menu}>
         <div className={styles.logo}>
           <Link href="https://versatille-devpedro.vercel.app/">
