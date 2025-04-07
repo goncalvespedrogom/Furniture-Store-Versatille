@@ -25,7 +25,7 @@ const OptionsMobile = () => {
   const slides = [
     {
       title: "Seja bem-vindo",
-      subtitle: "Encontre os móveis perfeitos para transformar seu espaço...",
+      subtitle: "Encontre os móveis perfeitos para transformar seu espaço.",
       image: Banner1,
       buttonText: "Conferir",
       showButton: true,
@@ -33,14 +33,14 @@ const OptionsMobile = () => {
     },
     {
       title: "Conteúdos",
-      subtitle: "Nossa coleção foi selecionada para oferecer sofisticação...",
+      subtitle: "Nossa coleção foi selecionada para oferecer sofisticação.",
       image: Banner2,
       buttonText: "",
       showButton: false
     },
     {
       title: "Showroom",
-      subtitle: "Encontre uma seleção completa de móveis que unem estilo...",
+      subtitle: "Encontre uma seleção completa de móveis que unem estilo.",
       image: Banner3,
       buttonText: "Mais detalhes",
       showButton: true,
