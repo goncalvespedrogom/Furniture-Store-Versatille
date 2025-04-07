@@ -13,7 +13,6 @@ import {
   FaSortAmountDownAlt,
 } from "react-icons/fa";
 
-// Import product images
 import produto01 from "@/img/produto01.svg";
 import Produto02 from "@/img/produto02.svg";
 import Produto03 from "@/img/produto03.svg";
@@ -345,7 +344,6 @@ const Catalog = () => {
         </div>
 
         <div className={styles.navContainer}>
-          {/* Mobile Categories Button */}
           <div
             className={styles.mobileCategoriesContainer}
             ref={categoryMenuRef}
@@ -383,7 +381,6 @@ const Catalog = () => {
             )}
           </div>
 
-          {/* Desktop Categories List */}
           <div className={styles.desktopCategories}>
             {categories.map((category) => (
               <button
@@ -398,7 +395,6 @@ const Catalog = () => {
             ))}
           </div>
 
-          {/* Filter Button */}
           <div className={styles.filterContainer} ref={filterRef}>
             <button
               className={styles.filterButton}

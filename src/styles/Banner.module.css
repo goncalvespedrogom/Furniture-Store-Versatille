@@ -10,7 +10,6 @@
   position: relative;
 }
 
-/* Overlay styles */
 .overlay {
   position: fixed;
   top: 0;
@@ -120,7 +119,6 @@
   font-size: 1.44rem;
 }
 
-/* Contact Popup Styles */
 .contactPopup {
   position: absolute;
   top: 80%;
@@ -319,30 +317,32 @@
     position: relative;
     z-index: 2;
   }
-  
+
   .text h1 {
     font-size: 5.8rem;
   }
 
   .text p.description {
-    font-size: .9rem;
+    font-size: 0.9rem;
     font-weight: 400;
     margin-top: 5.5rem;
     margin-bottom: 1.3rem;
     max-width: 280px;
     margin-right: 40px;
   }
-  
+
   .button {
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
-  
+
   .image img {
     width: 500px;
     height: auto;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
   }
 }
+
+/* responsivo */
 
 @media (max-width: 880px) {
   .banner {
@@ -472,7 +472,7 @@
 
   .text p.description {
     margin: 1rem auto;
-    margin-top: -.5rem;
+    margin-top: -0.5rem;
     max-width: 100%;
     text-align: center;
     font-size: 1rem;
@@ -488,7 +488,7 @@
   }
 
   .button {
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 }
 

@@ -1,4 +1,3 @@
-// components/Footer.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -15,13 +14,10 @@ const Footer: React.FC = () => {
       setIsMobileView(window.innerWidth < 1780);
     };
 
-    // Verificar no carregamento
     checkScreenSize();
 
-    // Adicionar listener para mudanças de tamanho
     window.addEventListener('resize', checkScreenSize);
 
-    // Limpar listener ao desmontar
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
@@ -48,7 +44,6 @@ const Footer: React.FC = () => {
     <div className={styles.footerBackground} id="footer">
       <div className={styles.footerContainer}>
         <div className={styles.topSection}>
-          {/* Desktop: Mantém o layout original */}
           <div className={styles.brandSection}>
             <div className={styles.logoAndName}>
               <Image
