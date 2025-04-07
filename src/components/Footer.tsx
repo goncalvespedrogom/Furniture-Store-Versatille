@@ -1,27 +1,49 @@
 // components/Footer.tsx
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/Footer.module.css";
 import Image from "next/image";
 import LogoFooter from "@/img/logofooter.svg";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
-const smoothScroll = (
-  e: React.MouseEvent<HTMLAnchorElement>,
-  targetId: string
-) => {
-  e.preventDefault();
-  const targetSection = document.getElementById(targetId);
-  if (targetSection) {
-    targetSection.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
-};
-
 const Footer: React.FC = () => {
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobileView(window.innerWidth < 1780);
+    };
+
+    // Verificar no carregamento
+    checkScreenSize();
+
+    // Adicionar listener para mudanças de tamanho
+    window.addEventListener('resize', checkScreenSize);
+
+    // Limpar listener ao desmontar
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  const smoothScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string
+  ) => {
+    e.preventDefault();
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  const handleGuideClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const targetId = isMobileView ? 'optionsMobile' : 'options';
+    smoothScroll(e, targetId);
+  };
+
   return (
     <div className={styles.footerBackground} id="footer">
       <div className={styles.footerContainer}>
@@ -76,7 +98,7 @@ const Footer: React.FC = () => {
             </a>
             <a
               href="#options"
-              onClick={(e) => smoothScroll(e, "options")}
+              onClick={handleGuideClick}
               className={styles.link}
             >
               GUIA
